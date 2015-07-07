@@ -10,10 +10,11 @@
 #import "OKThumbnailCollectionViewCell.h"
 #import "OKFullPhotoViewController.h"
 #import "AFNetworking.h"
+#import "OKSearchBarPhotoGalleryViewCell.h"
 
 static NSString *const kFlickrAPIKey = @"6b2ee9fdfff13d9509b7c923dff01b91";
 
-@interface OKPhotoGalleryViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
+@interface OKPhotoGalleryViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) NSMutableArray *photos;
 
@@ -33,21 +34,25 @@ static NSString *const kFlickrAPIKey = @"6b2ee9fdfff13d9509b7c923dff01b91";
 {
 	[[self navigationController] setNavigationBarHidden:YES animated:YES];
 	
-	[self.flickrCollectionView setContentInset:UIEdgeInsetsMake(44, 0, 0, 0)];
-	UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, -44, self.view.frame.size.width, 44.0)];
+	
+	UISearchBar *searchBar;
 	[self.flickrCollectionView addSubview:searchBar];
-	searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	searchBar.delegate = self;
 	
 	[self.flickrCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([OKThumbnailCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"CustomCell"];
 	
+	[self.flickrCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([OKSearchBarPhotoGalleryViewCell class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SearchBar"];
+	
+	
 	self.thumbnailURLs = [NSMutableDictionary dictionary];
 	self.imageURLs = [NSMutableDictionary dictionary];
-	
 	[super viewDidLoad];
 	[self.navigationController setNavigationBarHidden:YES];
 	
 	[self searchFlickrPhotos:@"Rihanna"];
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+	return CGSizeMake(0, 60.0f);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -56,6 +61,44 @@ static NSString *const kFlickrAPIKey = @"6b2ee9fdfff13d9509b7c923dff01b91";
 {
 	return self.photos.count;
 }
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *searchBarIdentifier = @"SearchBar";
+	OKSearchBarPhotoGalleryViewCell *collectionViewSearchBar = (OKSearchBarPhotoGalleryViewCell *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:searchBarIdentifier forIndexPath:indexPath];
+	
+	UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(collectionView.frame), 44)];
+	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+	searchBar.delegate = self;
+
+	[collectionViewSearchBar addSubview:searchBar];
+	return collectionViewSearchBar;
+}
+
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//{
+//	UICollectionReusableView *reusableview = nil;
+//	
+//	if (kind == UICollectionElementKindSectionHeader) {
+//		RecipeCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+//		NSString *title = [[NSString alloc]initWithFormat:@"Recipe Group #%i", indexPath.section + 1];
+//		headerView.title.text = title;
+//		UIImage *headerImage = [UIImage imageNamed:@"header_banner.png"];
+//		headerView.backgroundImage.image = headerImage;
+//		
+//		reusableview = headerView;
+//	}
+// 
+//	if (kind == UICollectionElementKindSectionFooter) {
+//		UICollectionReusableView *footerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterView" forIndexPath:indexPath];
+//		
+//		reusableview = footerview;
+//	}
+//	
+//	return reusableview;
+//}
+
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -84,6 +127,7 @@ static NSString *const kFlickrAPIKey = @"6b2ee9fdfff13d9509b7c923dff01b91";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+	NSLog(@"called");
 	NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
 	
 	for (int i = 0; i < self.photos.count; i++) {
@@ -106,7 +150,7 @@ static NSString *const kFlickrAPIKey = @"6b2ee9fdfff13d9509b7c923dff01b91";
 
 - (void)searchFlickrPhotos:(NSString *)text
 {
-	NSUInteger numberOfItems = 80;
+	NSUInteger numberOfItems = 100;
 	NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&per_page=%ld&format=json&nojsoncallback=1", kFlickrAPIKey, text, (long)numberOfItems];
 	
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
@@ -142,7 +186,6 @@ static NSString *const kFlickrAPIKey = @"6b2ee9fdfff13d9509b7c923dff01b91";
 	}];
 	
 	[operation start];
-	
 	/*	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 		NSError *err;
 		id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&err];
@@ -171,7 +214,6 @@ static NSString *const kFlickrAPIKey = @"6b2ee9fdfff13d9509b7c923dff01b91";
 	 [self.flickrCollectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:idx inSection:0]]];
 		}];
 	 }]; */
-	
 }
 
 - (void)downloadImageAtURL:(NSURL *)url completion:(void(^)(UIImage *image))completion

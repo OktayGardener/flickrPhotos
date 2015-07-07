@@ -17,6 +17,8 @@
 		1805F29E1B4C08E700A187FD /* OKThumbnailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1805F28F1B4C08E700A187FD /* OKThumbnailCollectionViewCell.xib */; };
 		1805F2A41B4C090F00A187FD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1805F2A01B4C090F00A187FD /* Images.xcassets */; };
 		1805F2AB1B4C098100A187FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1805F2A91B4C098100A187FD /* main.m */; };
+		3638CECB1B4C336700FACB45 /* OKSearchBarPhotoGalleryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3638CEC91B4C336700FACB45 /* OKSearchBarPhotoGalleryViewCell.m */; };
+		3638CECC1B4C336700FACB45 /* OKSearchBarPhotoGalleryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3638CECA1B4C336700FACB45 /* OKSearchBarPhotoGalleryViewCell.xib */; };
 		7B78D3BD68D641B323582EC7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D0D9D5CB929BF7C93A3523B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,9 @@
 		1805F2A81B4C098100A187FD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1805F2A91B4C098100A187FD /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1D0D9D5CB929BF7C93A3523B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3638CEC81B4C336700FACB45 /* OKSearchBarPhotoGalleryViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSearchBarPhotoGalleryViewCell.h; sourceTree = "<group>"; };
+		3638CEC91B4C336700FACB45 /* OKSearchBarPhotoGalleryViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSearchBarPhotoGalleryViewCell.m; sourceTree = "<group>"; };
+		3638CECA1B4C336700FACB45 /* OKSearchBarPhotoGalleryViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKSearchBarPhotoGalleryViewCell.xib; sourceTree = "<group>"; };
 		368E6D8F1B45366C00740910 /* OKFlickrPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OKFlickrPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		500FD1F2E28A6FE2A1F5994A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		86EC5B108C83279692FD8A22 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -64,6 +69,9 @@
 				1805F28B1B4C08E700A187FD /* OKPhotoGalleryViewController.m */,
 				1805F28C1B4C08E700A187FD /* OKPhotoGalleryViewController.xib */,
 				1805F28D1B4C08E700A187FD /* OKThumbnailCollectionViewCell.h */,
+				3638CEC81B4C336700FACB45 /* OKSearchBarPhotoGalleryViewCell.h */,
+				3638CEC91B4C336700FACB45 /* OKSearchBarPhotoGalleryViewCell.m */,
+				3638CECA1B4C336700FACB45 /* OKSearchBarPhotoGalleryViewCell.xib */,
 				1805F28E1B4C08E700A187FD /* OKThumbnailCollectionViewCell.m */,
 				1805F28F1B4C08E700A187FD /* OKThumbnailCollectionViewCell.xib */,
 				1805F2871B4C08E700A187FD /* OKFullPhotoViewController.h */,
@@ -189,6 +197,7 @@
 			files = (
 				1805F2911B4C08E700A187FD /* LaunchScreen.xib in Resources */,
 				1805F2A41B4C090F00A187FD /* Images.xcassets in Resources */,
+				3638CECC1B4C336700FACB45 /* OKSearchBarPhotoGalleryViewCell.xib in Resources */,
 				1805F29A1B4C08E700A187FD /* OKFullPhotoViewController.xib in Resources */,
 				1805F29E1B4C08E700A187FD /* OKThumbnailCollectionViewCell.xib in Resources */,
 				1805F29C1B4C08E700A187FD /* OKPhotoGalleryViewController.xib in Resources */,
@@ -239,6 +248,7 @@
 				1805F2991B4C08E700A187FD /* OKFullPhotoViewController.m in Sources */,
 				1805F2901B4C08E700A187FD /* AppDelegate.m in Sources */,
 				1805F2AB1B4C098100A187FD /* main.m in Sources */,
+				3638CECB1B4C336700FACB45 /* OKSearchBarPhotoGalleryViewCell.m in Sources */,
 				1805F29D1B4C08E700A187FD /* OKThumbnailCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
