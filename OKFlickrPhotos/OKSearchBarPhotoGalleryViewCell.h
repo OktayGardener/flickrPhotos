@@ -10,6 +10,6 @@
 
 @interface OKSearchBarPhotoGalleryViewCell : UICollectionReusableView <UISearchBarDelegate>
 
-@property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, weak, readonly) UISearchBar *searchBar;
 
 @end

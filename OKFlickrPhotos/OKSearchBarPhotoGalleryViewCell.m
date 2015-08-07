@@ -8,7 +8,14 @@
 
 #import "OKSearchBarPhotoGalleryViewCell.h"
 
+@interface OKSearchBarPhotoGalleryViewCell ()
+
+@property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
+
+@end
+
 @implementation OKSearchBarPhotoGalleryViewCell
+
 
 - (void)awakeFromNib {
     // Initialization code

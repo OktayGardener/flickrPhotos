@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uzD-mL-TJF">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uzD-mL-TJF" customClass="OKSearchBarPhotoGalleryViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -16,6 +16,9 @@
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
             </subviews>
+            <connections>
+                <outlet property="searchBar" destination="fQL-OH-4B6" id="MSn-3P-JLB"/>
+            </connections>
             <point key="canvasLocation" x="602" y="716"/>
         </collectionReusableView>
     </objects>

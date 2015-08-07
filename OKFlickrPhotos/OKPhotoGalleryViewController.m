@@ -66,12 +66,8 @@ static NSString *const kFlickrAPIKey = @"6b2ee9fdfff13d9509b7c923dff01b91";
 {
 	static NSString *searchBarIdentifier = @"SearchBar";
 	OKSearchBarPhotoGalleryViewCell *collectionViewSearchBar = (OKSearchBarPhotoGalleryViewCell *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:searchBarIdentifier forIndexPath:indexPath];
-	
-	UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(collectionView.frame), 44)];
-	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-	searchBar.delegate = self;
 
-	[collectionViewSearchBar addSubview:searchBar];
+	collectionViewSearchBar.searchBar.delegate = self;
 	return collectionViewSearchBar;
 }
 
