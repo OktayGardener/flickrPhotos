@@ -1,4 +1,5 @@
-New version!
-Cred to my coach @stefanceriu
+# Flickr photo app
+## Learning Objective-C and iOS development.
 
-#EF
+
+#This Flickr Photo application uses Flickr's API to fetch images with AFNetworking asynchronously. 
